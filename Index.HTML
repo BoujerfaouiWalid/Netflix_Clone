@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noon Studio</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font (Netflix-like) -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+  <!-- CSS externe -->
+  <link rel="stylesheet" href="Index.CSS" />
+
+
+</head>
+<body class="bg-black text-white font-sans">
+
+  <!-- Splash Screen avec Logo -->
+  <div id="splash" class="flex items-center justify-center h-screen bg-black transition-all duration-700 font-bebas text-6xl text-red-600 space-x-1">
+    <span class="letter">N</span>
+    <span class="letter text-white">o</span>
+    <span class="letter text-white">o</span>
+    <span class="letter text-white">n</span>
+    <span class="letter text-sm text-red-500 mt-10 tracking-widest">STUDIO</span>
+  </div>
+
+  <!-- Intro Page -->
+  <div id="intro" class="hidden relative h-screen w-full font-bebas">
+    
+    <!-- Image de fond avec effets -->
+    <img 
+    src="homepage/background.png" 
+    class="absolute inset-0 w-full h-full object-cover md:object-contain md:w-auto md:h-full mx-auto" 
+    alt="background image" 
+    loading="lazy"
+  />
+
+  <!-- Version Mobile : une seule image -->
+<div class="md:hidden">
+  <img 
+    src="homepage/background.png" 
+    class="w-full h-full object-cover absolute inset-0" 
+    alt="background mobile" 
+  />
+</div>
+
+<!-- Version Desktop : grille de 3 images -->
+<div class="hidden md:grid grid-cols-3 h-full w-full absolute inset-0">
+  <img src="homepage/background.png" class="object-contain w-full h-full" alt="bg1" />
+  <img src="homepage/background.png" class="object-contain w-full h-full" alt="bg2" />
+  <img src="homepage/background.png" class="object-contain w-full h-full" alt="bg3" />
+</div>
+
+  
+  
+    <!-- Overlay noir dégradé -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent z-10"></div>
+
+    <!-- Contenu texte -->
+    <div class="absolute bottom-20 w-full text-center px-6 z-20">
+      <h2 class="text-2xl md:text-4xl font-bold text-white">Unlimited entertainment,<br />one low price.</h2>
+      <p class="text-sm mt-2 text-white">All of Noon Studio, starting at just 25 CAD</p>
+
+      <!-- Points de pagination -->
+      <div class="flex justify-center mt-4 space-x-2">
+        <span class="w-2 h-2 bg-white rounded-full"></span>
+        <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+        <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+        <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+      </div>
+    </div>
+
+    <!-- Bouton GET STARTED -->
+    <button onclick="showEmail()" class="absolute bottom-0 w-full bg-red-600 text-white font-bold py-4 text-lg z-20">
+      GET STARTED
+    </button>
+  </div>
+
+<!-- Page Email -->
+<div id="emailPage" class="h-screen bg-white text-black flex flex-col items-center justify-center px-6">
+  <h2 class="text-xl font-semibold mb-4">Ready to watch?</h2>
+  <p class="mb-4 text-center text-sm">Enter your email to create or sign in to your account.</p>
+  <input id="startEmail" type="email" placeholder="Email" class="border border-gray-400 rounded w-full max-w-md px-4 py-2 mb-4" />
+  <button onclick="goToRegister()" class="bg-red-600 text-white font-bold px-6 py-2 rounded">GET STARTED</button>
+</div>
+
+<!-- Page principale après login -->
+<div id="mainPage" class="hidden h-screen flex items-center justify-center bg-black text-white">
+  <h1 class="text-3xl font-bold">Bienvenue sur Noon Studio !</h1>
+</div>
+
+
+<!-- Page Inscription -->
+<div id="registerPage" class="hidden h-screen bg-white text-black flex flex-col items-center justify-center px-6">
+  <h2 class="text-xl font-semibold mb-4">Create your account</h2>
+  <input id="registerName" type="text" placeholder="Name" class="border border-gray-400 rounded w-full max-w-md px-4 py-2 mb-3" />
+  <input id="registerEmail" type="email" placeholder="Email" class="border border-gray-400 rounded w-full max-w-md px-4 py-2 mb-3" />
+  <input id="registerPassword" type="password" placeholder="Password" class="border border-gray-400 rounded w-full max-w-md px-4 py-2 mb-4" />
+  <button onclick="registerUser()" class="bg-red-600 text-white font-bold px-6 py-2 rounded mb-3">Sign Up</button>
+  <p class="text-sm">Already have an account? <a href="#" onclick="goToLogin()" class="text-red-600 font-semibold">Sign in</a></p>
+</div>
+
+<!-- Page Connexion -->
+<div id="loginPage" class="hidden h-screen flex flex-col justify-center items-center bg-black text-white px-6">
+  <h1 class="text-4xl font-bebas text-red-600 mb-8">Moon Studio</h1>
+  <input id="loginEmail" type="email" placeholder="Email" class="bg-gray-800 text-white w-full max-w-md px-4 py-3 mb-4 rounded" />
+  <input id="loginPassword" type="password" placeholder="Password" class="bg-gray-800 text-white w-full max-w-md px-4 py-3 mb-6 rounded" />
+  <button id="loginBtn" class="w-full max-w-md bg-white text-black font-semibold py-3 rounded mb-4">Sign In</button>
+  <a href="#" class="text-sm text-gray-400 mb-2">Need help?</a>
+  <p class="text-sm mt-4">New to Moon Studio? <a href="#" onclick="goToRegister()" class="text-white font-bold">Sign up now.</a></p>
+</div>
+
+<!-- SCRIPT JS -->
+<script>
+
+window.onload = function() {
+    // Effacer les champs d'email à chaque fois qu'on charge la page
+    document.getElementById('startEmail').value = '';
+    document.getElementById('registerEmail').value = '';
+  };
+function goToRegister() {
+  const email = document.getElementById('startEmail').value;
+  document.getElementById('registerEmail').value = email || "";
+  document.getElementById('startEmail').value = ""; // Efface le champ de l'email
+  document.getElementById('emailPage').classList.add('hidden');
+  document.getElementById('registerPage').classList.remove('hidden');
+}
+
+
+  function goToLogin() {
+    document.getElementById('registerPage').classList.add('hidden');
+    document.getElementById('loginPage').classList.remove('hidden');
+  }
+
+  async function registerUser() {
+    const name = document.getElementById('registerName').value;
+    const email = document.getElementById('registerEmail').value;
+    const password = document.getElementById('registerPassword').value;
+
+    if (!email || !password) {
+    alert('Veuillez remplir tous les champs.');
+
+    // Rediriger vers la page d'inscription
+    window.location.href = "http://127.0.0.1:5500/erreur.html";
+    return;
+  }
+    try {
+      const res = await fetch('http://localhost:5000/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password })
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("Inscription réussie ! Vous pouvez maintenant vous connecter.");
+        goToLogin();
+      } else {
+        alert(data.message || "Erreur d'inscription.");
+      }
+    } catch (error) {
+      console.error("Erreur :", error);
+      alert("Erreur lors de l'inscription.");
+    }
+  }
+
+  document.getElementById('loginBtn').addEventListener('click', async () => {
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value.trim();
+
+  if (!email || !password) {
+  // Rediriger vers la page d'erreur des champs obligatoires
+  window.location.href = "http://127.0.0.1:5500/champs-obligatoires.html";
+  return;
+}
+
+
+  try {
+    const res = await fetch('http://localhost:5000/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+
+    const data = await res.json();
+
+    if (res.status === 200 && data.token) {
+      // Connexion réussie
+      localStorage.setItem('token', data.token);
+      window.location.href = "http://127.0.0.1:5501/Index.HTML#continue-watching";
+    } else {
+      // Connexion échouée
+      window.location.href = "http://127.0.0.1:5500/erreur.html";
+    }
+  } catch (error) {
+    console.error('Erreur réseau :', error);
+    // En cas d'erreur réseau, tu peux aussi rediriger vers une page d'erreur
+    window.location.href = "http://127.0.0.1:5500/erreur.html";
+  }
+});
+
+</script>
+
+
+
+
+
+<!-- Header -->
+<header class="flex items-center justify-between px-4 py-3 bg-black text-white relative w-full">
+
+  <!-- Logo à gauche -->
+  <div class="flex items-center space-x-2">
+    <img src="logo/LOGO_SITE.png" alt="Moon Studio" class="w-32 h-auto" />
+  </div>
+
+<!-- Navigation centrale (desktop) -->
+<nav class="hidden md:flex space-x-8 text-lg absolute left-1/2 transform -translate-x-1/2">
+  <a href="#continue-watching" class="hover:text-red-500 transition duration-200">Accueil</a>
+  <a href="liste-film.html" class="hover:text-red-500 transition duration-200">Films</a>
+
+  <!-- Conteneur Ma liste + Dropdown -->
+  <div class="relative group">
+    <a href="louer.html" class="hover:text-red-500 transition duration-200">Ma liste</a>
+
+    <!-- Liste déroulante -->
+    <ul id="ma-liste-menu-dropdown" class="absolute top-full mt-2 right-0 bg-black p-4 w-64 rounded shadow-lg text-white space-y-2 hidden group-hover:block z-50">
+      <!-- Les films loués apparaîtront ici -->
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+  <!-- Burger menu mobile -->
+  <div class="md:hidden absolute right-4">
+    <button id="menuToggle" class="text-white focus:outline-none">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu caché avec animation et style -->
+  <div id="mobileMenu" class="hidden absolute top-full left-0 w-full bg-black bg-opacity-90 z-50 flex flex-col space-y-2 px-4 py-3 rounded-b-lg shadow-lg transition-all duration-500 ease-in-out transform -translate-y-8">
+    <a href="#continue-watching" class="text-white hover:text-red-500 transition duration-200 text-xl font-semibold py-2">Accueil</a>
+    <a href="#" class="text-white hover:text-red-500 transition duration-200 text-xl font-semibold py-2">Films</a>
+    <button id="toggleListe" class="hover:text-red-500 transition duration-200 relative">
+      Ma liste <span id="listeCount">(0)</span>
+      <!-- Menu déroulant -->
+      <div id="maListe" class="absolute top-8 right-0 bg-gray-800 p-4 rounded shadow hidden w-64 max-h-96 overflow-y-auto z-50">
+        <ul id="listeFilms" class="space-y-2">
+          <!-- Les films loués vont apparaître ici -->
+        </ul>
+      </div>
+    </button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const films = JSON.parse(localStorage.getItem("filmsLoues")) || [];
+  
+      const listeDropdown = document.getElementById("ma-liste-menu-dropdown");
+      const listeMobile = document.getElementById("listeFilms");
+      const listeCount = document.getElementById("listeCount");
+  
+      // Compteur
+      if (listeCount) {
+        listeCount.textContent = `(${films.length})`;
+      }
+  
+      // Remplir le menu dropdown desktop
+      if (listeDropdown) {
+        listeDropdown.innerHTML = "";
+        films.forEach(film => {
+          const li = document.createElement("li");
+          li.textContent = film.titre || "Film sans titre";
+          listeDropdown.appendChild(li);
+        });
+      }
+  
+      // Remplir le menu mobile
+      if (listeMobile) {
+        listeMobile.innerHTML = "";
+        films.forEach(film => {
+          const li = document.createElement("li");
+          li.textContent = film.titre || "Film sans titre";
+          listeMobile.appendChild(li);
+        });
+      }
+    });
+  </script>
+
+
+</header>
+
+
+<!-- Script pour gérer l'affichage du menu mobile et de la barre de recherche -->
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    // Afficher / cacher le menu mobile
+    document.getElementById('menuToggle').addEventListener('click', function() {
+      var mobileMenu = document.getElementById('mobileMenu');
+      mobileMenu.classList.toggle('hidden'); 
+      mobileMenu.classList.toggle('-translate-y-8'); // Animation de l'ouverture du menu
+    });
+
+    // Toggle search bar
+    document.getElementById('searchBtn').addEventListener('click', function() {
+      var searchInput = document.getElementById('searchInput');
+      // Toggle width and opacity for smooth transition
+      if (searchInput.classList.contains('w-0')) {
+        searchInput.classList.remove('w-0', 'opacity-0');
+        searchInput.classList.add('w-56', 'opacity-100');
+      } else {
+        searchInput.classList.remove('w-56', 'opacity-100');
+        searchInput.classList.add('w-0', 'opacity-0');
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                           <!-- Je suis la maintenant  -->
+
+
+
+
+<!-- Hero Banner avec Animation Dynamique -->
+<div class="relative w-full h-[80vh] overflow-hidden">
+  <div id="heroBanner" class="w-full h-full relative bg-black overflow-hidden">
+
+    <!-- Film 1 -->
+    <img src="homepage/film1.gif" 
+         class="hero-image w-full h-full object-cover object-top absolute top-0 left-0 transition-opacity duration-1000 filter brightness-[0.85] contrast-[1.1] saturate-[1.2]" 
+         data-title="Ninja Turtles"
+         style="opacity: 1"
+         alt="Featured Movie" />
+
+    <!-- Film 2 -->
+    <img src="homepage/film2.gif" 
+         class="hero-image w-full h-full object-cover object-top absolute top-0 left-0 transition-opacity duration-1000 filter brightness-[0.85] contrast-[1.1] saturate-[1.2]" 
+         data-title="Fast and Furious"
+         style="opacity: 0"
+         alt="Featured Movie" />
+
+    <!-- Film 3 -->
+    <img src="homepage/film3.gif" 
+         class="hero-image w-full h-full object-cover object-top absolute top-0 left-0 transition-opacity duration-1000 filter brightness-[0.85] contrast-[1.1] saturate-[1.2]" 
+         data-title="True Lies"
+         style="opacity: 0"
+         alt="Featured Movie" />
+
+    <!-- Gradient overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60 pointer-events-none"></div>
+  </div>
+
+  <!-- Overlay gradient top -->
+  <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-80"></div>
+
+  <!-- Text Content -->
+  <div class="absolute bottom-20 left-10 z-10">
+    <h1 id="featuredTitle" class="text-5xl md:text-7xl font-bold">Featured Film</h1>
+    <div class="mt-4 flex space-x-4">
+      <button class="bg-white text-black px-6 py-2 rounded font-semibold">Play</button>
+      <button class="bg-gray-700 bg-opacity-70 text-white px-6 py-2 rounded font-semibold">More Info</button>
+    </div>
+  </div>
+</div>
+
+<!-- Script pour changer automatiquement l’image et le titre -->
+<script>
+  const images = document.querySelectorAll('.hero-image');
+  const title = document.getElementById('featuredTitle');
+  let current = 0;
+
+  function showNextImage() {
+    images.forEach(img => img.style.opacity = '0');
+    images[current].style.opacity = '1';
+    title.textContent = images[current].dataset.title;
+    current = (current + 1) % images.length;
+  }
+
+  showNextImage(); // Initial load
+  setInterval(showNextImage, 5000); // Change every 5 seconds
+</script>
+
+
+ <!-- Section Template -->
+<div class="p-6 space-y-8">
+
+  <!-- Section 1 -->
+  <section id="continue-watching" aria-label="Continue Watching Section">
+    <h2 class="text-2xl font-bold mb-4">Continue Watching</h2>
+    <div class="flex gap-4 overflow-x-auto scrollbar-hide">
+  
+<!-- Unique toast container à placer tout en haut du <body> -->
+  <div id="toast-container" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-[9999]"></div>
+
+<!-- Film 1 -->
+<div class="relative group w-48 h-72 flex-shrink-0">
+  <img src="film/film1.jpeg" alt="Film 1" class="w-full h-full object-cover rounded" />
+  <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded flex flex-col justify-end p-4">
+    <h3 class="text-white text-sm font-bold mb-2">True Lies</h3>
+    <div class="flex gap-2">
+      <button onclick="openPlayerModal('playerModal1')" class="flex items-center gap-2 bg-white text-black text-sm font-semibold px-4 py-1.5 rounded hover:bg-gray-200 transition-all duration-300">
+        <i class="fas fa-play"></i><span>Play</span>
+      </button>
+      <button onclick="openModal('infoModal1')" class="flex items-center gap-2 bg-white/20 text-white text-sm font-semibold px-4 py-1.5 rounded border border-white hover:bg-white/30 transition-all duration-300">
+        <i class="fas fa-info-circle"></i><span>Info</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Player Film 1 -->
+<div id="playerModal1" class="fixed inset-0 z-50 bg-black bg-opacity-80 hidden items-center justify-center">
+  <div class="relative w-[90%] max-w-4xl aspect-video bg-black rounded-xl overflow-hidden">
+    <button onclick="closeModal('playerModal1')" class="absolute top-2 right-3 text-white text-3xl hover:text-red-500 z-10">&times;</button>
+    <iframe
+      src="https://www.youtube.com/embed/3B7HG8_xbDw?si=QWU3QXWfIJ_2y9fm&autoplay=1"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+      class="w-full h-full"
+    ></iframe>
+  </div>
+</div>
+
+<!-- Modal Film 1 Info -->
+<div id="infoModal1" class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden items-center justify-center film-card" data-annee="1994" data-duree="1h42" data-genre="Drame">
+  <div class="bg-gray-900 text-white rounded-xl w-[90%] max-w-4xl p-6 relative">
+    <button onclick="closeModal('infoModal1')" class="absolute top-4 right-4 text-white text-2xl hover:text-red-500">&times;</button>
+    <div class="flex flex-col md:flex-row gap-6">
+      <img src="film/film1.jpeg" alt="Film 1" class="w-full md:w-1/3 rounded-lg object-cover" />
+      <div class="flex flex-col gap-4">
+        <h2 class="text-2xl font-bold">True Lies</h2>
+        <p class="text-sm text-gray-300">1994 • 1h42 • Drame</p>
+        <p class="film-description text-gray-400 text-sm">Plongez dans un mélange explosif d’action, d’humour et d’espionnage avec Arnold Schwarzenegger dans le rôle d’un agent secret menant une double vie...</p>
+        <div class="flex gap-4 mt-4">
+          <button data-film-id="111503" class="btn-louer bg-white/10 border border-white text-white font-semibold px-4 py-2 rounded hover:bg-white/20 transition">
+            Louer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  // Fonction pour ouvrir un modal (info ou player)
+  function openModal(id) {
+    document.getElementById(id).classList.remove('hidden');
+    document.getElementById(id).classList.add('flex');
+  }
+
+  // Fonction pour fermer un modal
+  function closeModal(id) {
+    document.getElementById(id).classList.add('hidden');
+    document.getElementById(id).classList.remove('flex');
+    
+    // Si c'est un player, on arrête la vidéo (en réinitialisant l'iframe)
+    const iframe = document.querySelector(`#${id} iframe`);
+    if (iframe) {
+      iframe.src = iframe.src;
+    }
+  }
+
+  // Fonction spécifique pour ouvrir le modal du player
+  function openPlayerModal(id) {
+    openModal(id);
+  }
+</script>
+
+<!-- Film 2 -->
+<div class="relative group w-48 h-72 flex-shrink-0">
+  <img src="film/film2.jpeg" alt="Film 2" class="w-full h-full object-cover rounded" />
+  <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded flex flex-col justify-end p-4">
+    <h3 class="text-white text-sm font-bold mb-2">Ninja Turtles</h3>
+    <div class="flex gap-2">
+      <button onclick="openPlayerModal('playerModal2')" class="flex items-center gap-2 bg-white text-black text-sm font-semibold px-4 py-1.5 rounded hover:bg-gray-200 transition-all duration-300">
+        <i class="fas fa-play"></i><span>Play</span>
+      </button>
+      <button onclick="openModal('infoModal2')" class="flex items-center gap-2 bg-white/20 text-white text-sm font-semibold px-4 py-1.5 rounded border border-white hover:bg-white/30 transition-all duration-300">
+        <i class="fas fa-info-circle"></i><span>Info</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+  
+ <!-- Modal Player Film 2 -->
+<div id="playerModal2" class="fixed inset-0 z-50 bg-black bg-opacity-80 hidden items-center justify-center">
+  <div class="relative w-[90%] max-w-4xl aspect-video bg-black rounded-xl overflow-hidden">
+    <button onclick="closeModal('playerModal2')" class="absolute top-2 right-3 text-white text-3xl hover:text-red-500 z-10">&times;</button>
+    <iframe
+      src="https://www.youtube.com/embed/zxkqixUKZt8?si=rzuudzSmM9n9AZm9&autoplay=1"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+      class="w-full h-full"
+    ></iframe>
+  </div>
+</div>
+
+<!-- Modal Film 2 Info -->
+<div id="infoModal2" class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden items-center justify-center film-card" data-annee="1990" data-duree="2h05" data-genre="Thriller">
+  <div class="bg-gray-900 text-white rounded-xl w-[90%] max-w-4xl p-6 relative">
+    <button onclick="closeModal('infoModal2')" class="absolute top-4 right-4 text-white text-2xl hover:text-red-500">&times;</button>
+    <div class="flex flex-col md:flex-row gap-6">
+      <img src="film/film2.jpeg" alt="Film 2" class="w-full md:w-1/3 rounded-lg object-cover" />
+      <div class="flex flex-col gap-4">
+        <h2 class="text-2xl font-bold">Ninja Turtles</h2>
+        <p class="text-sm text-gray-300">1990 • 2h05 • Thriller</p>
+        <p class="text-gray-400 text-sm">Quatre frères mutants experts en arts martiaux sortent de l’ombre pour sauver New York d’un complot menaçant la ville. Entre humour, action et fraternité, Ninja Turtles vous plonge dans une aventure déjantée aux côtés de Leonardo, Michelangelo, Donatello et Raphael !</p>
+        <div class="flex gap-4 mt-4">
+          <button class="bg-white/10 border border-white text-white font-semibold px-4 py-2 rounded hover:bg-white/20 transition" data-film-id="100758" data-film-titre="Ninja Turtles">Louer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<!-- Film 3 -->
+<div class="relative group w-48 h-72 flex-shrink-0">
+  <img src="film/film3.jpeg" alt="Sister Act" class="w-full h-full object-cover rounded" />
+  <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded flex flex-col justify-end p-4">
+    <h3 class="text-white text-sm font-bold mb-2">Sister Act</h3>
+    <div class="flex gap-2">
+      <button onclick="openPlayerModal('playerModal3')" class="flex items-center gap-2 bg-white text-black text-sm font-semibold px-4 py-1.5 rounded hover:bg-gray-200 transition-all duration-300">
+        <i class="fas fa-play"></i><span>Play</span>
+      </button>
+      <button onclick="openModal('infoModal3')" class="flex items-center gap-2 bg-white/20 text-white text-sm font-semibold px-4 py-1.5 rounded border border-white hover:bg-white/30 transition-all duration-300">
+        <i class="fas fa-info-circle"></i><span>Info</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Player Film 3 -->
+<div id="playerModal3" class="fixed inset-0 z-50 bg-black bg-opacity-80 hidden items-center justify-center">
+  <div class="relative w-[90%] max-w-4xl aspect-video bg-black rounded-xl overflow-hidden">
+    <button onclick="closeModal('playerModal3')" class="absolute top-2 right-3 text-white text-3xl hover:text-red-500 z-10">&times;</button>
+    <iframe
+      src="https://www.youtube.com/embed/lCBjHkCK1Vw?si=ZAAVGVW1VAs6U9Rg&autoplay=1"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+      class="w-full h-full"
+    ></iframe>
+  </div>
+</div>
+
+<!-- Modal Info Film 3 -->
+<div id="infoModal3" class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden items-center justify-center">
+  <div id="toast-container"></div>
+  <div class="bg-gray-900 text-white rounded-xl w-[90%] max-w-4xl p-6 relative">
+    <button onclick="closeModal('infoModal3')" class="absolute top-4 right-4 text-white text-2xl hover:text-red-500">&times;</button>
+    <div class="flex flex-col md:flex-row gap-6">
+      <img src="film/film3.jpeg" alt="Sister Act" class="w-full md:w-1/3 rounded-lg object-cover" />
+      <div class="flex flex-col gap-4">
+        <h2 class="text-2xl font-bold">Sister Act</h2>
+        <p class="text-sm text-gray-300">1992 • 1h40 • Comédie musicale</p>
+        <p class="text-gray-400 text-sm">
+          Quand une chanteuse de cabaret se retrouve cachée dans un couvent après avoir été témoin d’un crime, 
+          elle transforme la chorale des sœurs avec énergie et bonne humeur. <br>
+          <strong>Sister Act</strong> est une comédie musicale drôle et touchante portée par une Whoopi Goldberg inoubliable !
+        </p>
+        <div class="flex gap-4 mt-4">
+          <button onclick="louerFilm()" class="bg-white text-black font-semibold px-4 py-2 rounded hover:bg-gray-300 transition" data-film-id="105417">Louer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  
+<!-- Film 4 -->
+<div class="relative group w-48 h-72 flex-shrink-0">
+  <img src="film/film4.jpeg" alt="Pulp Fiction" class="w-full h-full object-cover rounded" />
+  <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded flex flex-col justify-end p-4">
+    <h3 class="text-white text-sm font-bold mb-2">Pulp Fiction</h3>
+    <div class="flex gap-2">
+      <button onclick="openPlayerModal('playerModal4')" class="flex items-center gap-2 bg-white text-black text-sm font-semibold px-4 py-1.5 rounded hover:bg-gray-200 transition-all duration-300">
+        <i class="fas fa-play"></i><span>Play</span>
+      </button>
+      <button onclick="openModal('infoModal4')" class="flex items-center gap-2 bg-white/20 text-white text-sm font-semibold px-4 py-1.5 rounded border border-white hover:bg-white/30 transition-all duration-300">
+        <i class="fas fa-info-circle"></i><span>Info</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Player Film 4 -->
+<div id="playerModal4" class="fixed inset-0 z-50 bg-black bg-opacity-80 hidden items-center justify-center">
+  <div class="relative w-[90%] max-w-4xl aspect-video bg-black rounded-xl overflow-hidden">
+    <button onclick="closeModal('playerModal4')" class="absolute top-2 right-3 text-white text-3xl hover:text-red-500 z-10">&times;</button>
+    <iframe
+      src="https://www.youtube.com/embed/s7EdQ4FqbhY?si=ycR7ZFTr0pMRI4ie&autoplay=1"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+      class="w-full h-full"
+    ></iframe>
+  </div>
+</div>
+
+<!-- Modal Info Film 4 -->
+<div id="infoModal4" class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden items-center justify-center">
+  <div id="toast-container"></div>
+  <div class="bg-gray-900 text-white rounded-xl w-[90%] max-w-4xl p-6 relative">
+    <button onclick="closeModal('infoModal4')" class="absolute top-4 right-4 text-white text-2xl hover:text-red-500">&times;</button>
+    <div class="flex flex-col md:flex-row gap-6">
+      <img src="film/film4.jpeg" alt="Pulp Fiction" class="w-full md:w-1/3 rounded-lg object-cover" />
+      <div class="flex flex-col gap-4">
+        <h2 class="text-2xl font-bold">Pulp Fiction</h2>
+        <p class="text-sm text-gray-300">1994 • 2h34 • Policier / Drame</p>
+        <p class="text-gray-400 text-sm">
+          Un chef-d'œuvre signé Quentin Tarantino, où se croisent gangsters, boxeurs, tueurs à gages et dialogues cultes. <br>
+          Avec son style unique, son humour noir et ses scènes iconiques, <strong>Pulp Fiction</strong> bouscule les codes du cinéma 
+          et vous embarque dans une expérience inoubliable.
+        </p>
+        <div class="flex gap-4 mt-4">
+          <button onclick="louerFilm()" class="bg-white text-black font-semibold px-4 py-2 rounded hover:bg-gray-300 transition" data-film-id="111503">Louer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Film 5 -->
+<div class="relative group w-48 h-72 flex-shrink-0">
+  <img src="film/film5.jpeg" alt="Schindler's List" class="w-full h-full object-cover rounded" />
+  <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded flex flex-col justify-end p-4">
+    <h3 class="text-white text-sm font-bold mb-2">Schindler's List</h3>
+    <div class="flex gap-2">
+      <button onclick="openPlayerModal('playerModal5')" class="flex items-center gap-2 bg-white text-black text-sm font-semibold px-4 py-1.5 rounded hover:bg-gray-200 transition-all duration-300">
+        <i class="fas fa-play"></i><span>Play</span>
+      </button>
+      <button onclick="openModal('infoModal5')" class="flex items-center gap-2 bg-white/20 text-white text-sm font-semibold px-4 py-1.5 rounded border border-white hover:bg-white/30 transition-all duration-300">
+        <i class="fas fa-info-circle"></i><span>Info</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Player Film 5 -->
+<div id="playerModal5" class="fixed inset-0 z-50 bg-black bg-opacity-80 hidden items-center justify-center">
+  <div class="relative w-[90%] max-w-4xl aspect-video bg-black rounded-xl overflow-hidden">
+    <button onclick="closeModal('playerModal5')" class="absolute top-2 right-3 text-white text-3xl hover:text-red-500 z-10">&times;</button>
+    <iframe
+      src="https://www.youtube.com/embed/gG22XNhtnoY?si=aAS5RRz0fZv--5s3&autoplay=1"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+      class="w-full h-full"
+    ></iframe>
+  </div>
+</div>
+
+<!-- Modal Info Film 5 -->
+<div id="infoModal5" class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden items-center justify-center">
+  <div id="toast-container"></div>
+  <div class="bg-gray-900 text-white rounded-xl w-[90%] max-w-4xl p-6 relative">
+    <button onclick="closeModal('infoModal5')" class="absolute top-4 right-4 text-white text-2xl hover:text-red-500">&times;</button>
+    <div class="flex flex-col md:flex-row gap-6">
+      <img src="film/film5.jpeg" alt="Schindler's List" class="w-full md:w-1/3 rounded-lg object-cover" />
+      <div class="flex flex-col gap-4">
+        <h2 class="text-2xl font-bold">Schindler's List</h2>
+        <p class="text-sm text-gray-300">1993 • 3h15 • Drame / Historique</p>
+        <p class="text-gray-400 text-sm">
+          Basé sur une histoire vraie, ce film bouleversant réalisé par Steven Spielberg retrace le parcours d’Oskar Schindler, 
+          un industriel allemand qui sauva plus de mille Juifs pendant l’Holocauste. <br>
+          <strong>La Liste de Schindler</strong> est un hommage poignant au courage et à la compassion.
+        </p>
+        <div class="flex gap-4 mt-4">
+          <button onclick="louerFilm()" class="bg-white text-black font-semibold px-4 py-2 rounded hover:bg-gray-300 transition" data-film-id="108052">Louer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Film 6 -->
+<div class="relative group w-48 h-72 flex-shrink-0">
+  <img src="film/film6.jpeg" alt="Fast & Furious" class="w-full h-full object-cover rounded" />
+  <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded flex flex-col justify-end p-4">
+    <h3 class="text-white text-sm font-bold mb-2">Fast & Furious</h3>
+    <div class="flex gap-2">
+      <button onclick="openPlayerModal('playerModal6')" class="flex items-center gap-2 bg-white text-black text-sm font-semibold px-4 py-1.5 rounded hover:bg-gray-200 transition-all duration-300">
+        <i class="fas fa-play"></i><span>Play</span>
+      </button>
+      <button onclick="openModal('infoModal6')" class="flex items-center gap-2 bg-white/20 text-white text-sm font-semibold px-4 py-1.5 rounded border border-white hover:bg-white/30 transition-all duration-300">
+        <i class="fas fa-info-circle"></i><span>Info</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Player Film 6 -->
+<div id="playerModal6" class="fixed inset-0 z-50 bg-black bg-opacity-80 hidden items-center justify-center">
+  <div class="relative w-[90%] max-w-4xl aspect-video bg-black rounded-xl overflow-hidden">
+    <button onclick="closeModal('playerModal6')" class="absolute top-2 right-3 text-white text-3xl hover:text-red-500 z-10">&times;</button>
+    <iframe
+      src="https://www.youtube.com/embed/k98tBkRsGl4?si=JR7psyc-ZOoD4Ldo&autoplay=1"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+      class="w-full h-full"
+    ></iframe>
+  </div>
+</div>
+
+<!-- Modal Info Film 6 -->
+<div id="infoModal6" class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden items-center justify-center">
+  <div id="toast-container"></div>
+  <div class="bg-gray-900 text-white rounded-xl w-[90%] max-w-4xl p-6 relative">
+    <button onclick="closeModal('infoModal6')" class="absolute top-4 right-4 text-white text-2xl hover:text-red-500">&times;</button>
+    <div class="flex flex-col md:flex-row gap-6">
+      <img src="film/film6.jpeg" alt="Fast & Furious" class="w-full md:w-1/3 rounded-lg object-cover" />
+      <div class="flex flex-col gap-4">
+        <h2 class="text-2xl font-bold">Fast & Furious</h2>
+        <p class="text-sm text-gray-300">2001 • 1h46 • Action / Thriller</p>
+        <p class="text-gray-400 text-sm">
+          Plongez dans l’univers des courses de rue, de l’adrénaline pure et des moteurs rugissants. <br>
+          Quand un policier infiltré rejoint un gang de pilotes clandestins, les limites entre 
+          loyauté et justice deviennent floues. <br>
+          <strong>Fast & Furious</strong>, c’est de l’action à grande vitesse et une dose de pur spectacle !
+        </p>
+        <div class="flex gap-4 mt-4">
+          <button onclick="louerFilm()" class="bg-white text-black font-semibold px-4 py-2 rounded hover:bg-gray-300 transition" data-film-id="1013752">Louer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Fonction JS réutilisable -->
+  <script>
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+      document.getElementById(id).classList.add('flex');
+    }
+  
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+      document.getElementById(id).classList.remove('flex');
+    }
+  </script>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+                                                <!-- Section 2 -->
+
+  <section id="Top 10 rental film" aria-label="Top 10 rental film">
+    <h2 class="text-2xl font-bold mb-4">Top 10 rental film</h2>
+    <div class="flex gap-4 overflow-x-auto scrollbar-hide">
+
+<!-- Film 1 -->
+<div class="relative group w-48 h-72 flex-shrink-0">
+  <img src="film/film6.jpeg" alt="Fast & Furious" class="w-full h-full object-cover rounded" />
+  <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded flex flex-col justify-end p-4">
+    <h3 class="text-white text-sm font-bold mb-2">Fast & Furious</h3>
+    <div class="flex gap-2">
+      <button class="flex items-center gap-2 bg-white text-black text-sm font-semibold px-4 py-1.5 rounded hover:bg-gray-200 transition-all duration-300">
+        <i class="fas fa-play"></i><span>Play</span>
+      </button>
+      <button onclick="openModal('infoModal6')" class="flex items-center gap-2 bg-white/20 text-white text-sm font-semibold px-4 py-1.5 rounded border border-white hover:bg-white/30 transition-all duration-300">
+        <i class="fas fa-info-circle"></i><span>Info</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="infoModal6" class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden items-center justify-center">
+  <div id="toast-container"></div>
+  <div class="bg-gray-900 text-white rounded-xl w-[90%] max-w-4xl p-6 relative">
+    <button onclick="closeModal('infoModal6')" class="absolute top-4 right-4 text-white text-2xl hover:text-red-500">&times;</button>
+    <div class="flex flex-col md:flex-row gap-6">
+      <img src="film/film6.jpeg" alt="Fast & Furious" class="w-full md:w-1/3 rounded-lg object-cover" />
+      <div class="flex flex-col gap-4">
+        <h2 class="text-2xl font-bold">Fast & Furious</h2>
+        <p class="text-sm text-gray-300">2001 • 1h46 • Action / Thriller</p>
+        <p class="text-gray-400 text-sm">
+          Plongez dans l’univers des courses de rue, de l’adrénaline pure et des moteurs rugissants. <br>
+          Quand un policier infiltré rejoint un gang de pilotes clandestins, les limites entre 
+          loyauté et justice deviennent floues. <br>
+          <strong>Fast & Furious</strong>, c’est de l’action à grande vitesse et une dose de pur spectacle !
+        </p>
+        <div class="flex gap-4 mt-4">
+          <button onclick="louerFilm()" class="bg-white text-black font-semibold px-4 py-2 rounded hover:bg-gray-300 transition" data-film-id="1013752">Louer</button>
+          <button class="bg-white/10 border border-white text-white font-semibold px-4 py-2 rounded hover:bg-white/20 transition">Ajouter à ma liste</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Fonction JS réutilisable -->
+  <script>
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+      document.getElementById(id).classList.add('flex');
+    }
+  
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+      document.getElementById(id).classList.remove('flex');
+    }
+  </script>
+
+<!-- Film 2 -->
+<div class="relative group w-48 h-72 flex-shrink-0">
+  <img src="film/film7.jpeg" alt="Hook" class="w-full h-full object-cover rounded" />
+  <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded flex flex-col justify-end p-4">
+    <h3 class="text-white text-sm font-bold mb-2">Hook</h3>
+    <div class="flex gap-2">
+      <button class="flex items-center gap-2 bg-white text-black text-sm font-semibold px-4 py-1.5 rounded hover:bg-gray-200 transition-all duration-300">
+        <i class="fas fa-play"></i><span>Play</span>
+      </button>
+      <button onclick="openModal('infoModal7')" class="flex items-center gap-2 bg-white/20 text-white text-sm font-semibold px-4 py-1.5 rounded border border-white hover:bg-white/30 transition-all duration-300">
+        <i class="fas fa-info-circle"></i><span>Info</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal - Hook -->
+<div id="infoModal7" class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden items-center justify-center">
+  <div class="bg-gray-900 text-white rounded-xl w-[90%] max-w-4xl p-6 relative">
+    <button onclick="closeModal('infoModal7')" class="absolute top-4 right-4 text-white text-2xl hover:text-red-500">&times;</button>
+    <div class="flex flex-col md:flex-row gap-6">
+      <img src="film/film7.jpeg" alt="Hook" class="w-full md:w-1/3 rounded-lg object-cover" />
+      <div class="flex flex-col gap-4">
+        <h2 class="text-2xl font-bold">Hook</h2>
+        <p class="text-sm text-gray-300">1991 • 2h22 • Fantastique</p>
+        <p class="text-gray-400 text-sm">
+          Et si Peter Pan avait grandi et oublié le Pays Imaginaire ? <br>
+          Dans ce conte magique réalisé par Steven Spielberg, Robin Williams incarne un Peter adulte qui doit retrouver son âme d’enfant <br>
+          pour sauver ses enfants des griffes du Capitaine Crochet. <br>
+          Hook, un film enchanteur pour toute la famille, entre nostalgie et aventure !
+        </p>
+        <div class="flex gap-4 mt-4">
+          <button onclick="louerFilm()" class="bg-white text-black font-semibold px-4 py-2 rounded hover:bg-gray-300 transition" data-film-id="102057">Louer</button>
+          <button class="bg-white/10 border border-white text-white font-semibold px-4 py-2 rounded hover:bg-white/20 transition">Ajouter à ma liste</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Fonction JS réutilisable -->
+  <script>
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+      document.getElementById(id).classList.add('flex');
+    }
+  
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+      document.getElementById(id).classList.remove('flex');
+    }
+  </script>
+
+<!-- Film 3 -->
+<div class="relative group w-48 h-72 flex-shrink-0">
+  <img src="film/film5.jpeg" alt="Schindler's List" class="w-full h-full object-cover rounded" />
+  <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded flex flex-col justify-end p-4">
+    <h3 class="text-white text-sm font-bold mb-2">Schindler's List</h3>
+    <div class="flex gap-2">
+      <button class="flex items-center gap-2 bg-white text-black text-sm font-semibold px-4 py-1.5 rounded hover:bg-gray-200 transition-all duration-300">
+        <i class="fas fa-play"></i><span>Play</span>
+      </button>
+      <button onclick="openModal('infoModal5')" class="flex items-center gap-2 bg-white/20 text-white text-sm font-semibold px-4 py-1.5 rounded border border-white hover:bg-white/30 transition-all duration-300">
+        <i class="fas fa-info-circle"></i><span>Info</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="infoModal5" class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden items-center justify-center">
+  <div id="toast-container"></div>
+  <div class="bg-gray-900 text-white rounded-xl w-[90%] max-w-4xl p-6 relative">
+    <button onclick="closeModal('infoModal5')" class="absolute top-4 right-4 text-white text-2xl hover:text-red-500">&times;</button>
+    <div class="flex flex-col md:flex-row gap-6">
+      <img src="film/film5.jpeg" alt="Schindler's List" class="w-full md:w-1/3 rounded-lg object-cover" />
+      <div class="flex flex-col gap-4">
+        <h2 class="text-2xl font-bold">Schindler's List</h2>
+        <p class="text-sm text-gray-300">1993 • 3h15 • Drame / Historique</p>
+        <p class="text-gray-400 text-sm">
+          Basé sur une histoire vraie, ce film bouleversant réalisé par Steven Spielberg retrace le parcours d’Oskar Schindler, 
+          un industriel allemand qui sauva plus de mille Juifs pendant l’Holocauste. <br>
+          <strong>La Liste de Schindler</strong> est un hommage poignant au courage et à la compassion.
+        </p>
+        <div class="flex gap-4 mt-4">
+          <button onclick="louerFilm()" class="bg-white text-black font-semibold px-4 py-2 rounded hover:bg-gray-300 transition" data-film-id="108052">Louer</button>
+          <button class="bg-white/10 border border-white text-white font-semibold px-4 py-2 rounded hover:bg-white/20 transition">Ajouter à ma liste</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Film 4 -->
+<div class="relative group w-48 h-72 flex-shrink-0">
+  <img src="film/film3.jpeg" alt="Sister Act" class="w-full h-full object-cover rounded" />
+  <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded flex flex-col justify-end p-4">
+    <h3 class="text-white text-sm font-bold mb-2">Sister Act</h3>
+    <div class="flex gap-2">
+      <button class="flex items-center gap-2 bg-white text-black text-sm font-semibold px-4 py-1.5 rounded hover:bg-gray-200 transition-all duration-300">
+        <i class="fas fa-play"></i><span>Play</span>
+      </button>
+      <button onclick="openModal('infoModal3')" class="flex items-center gap-2 bg-white/20 text-white text-sm font-semibold px-4 py-1.5 rounded border border-white hover:bg-white/30 transition-all duration-300">
+        <i class="fas fa-info-circle"></i><span>Info</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="infoModal3" class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden items-center justify-center">
+  <div id="toast-container"></div>
+  <div class="bg-gray-900 text-white rounded-xl w-[90%] max-w-4xl p-6 relative">
+    <button onclick="closeModal('infoModal3')" class="absolute top-4 right-4 text-white text-2xl hover:text-red-500">&times;</button>
+    <div class="flex flex-col md:flex-row gap-6">
+      <img src="film/film3.jpeg" alt="Sister Act" class="w-full md:w-1/3 rounded-lg object-cover" />
+      <div class="flex flex-col gap-4">
+        <h2 class="text-2xl font-bold">Sister Act</h2>
+        <p class="text-sm text-gray-300">1992 • 1h40 • Comédie musicale</p>
+        <p class="text-gray-400 text-sm">
+          Quand une chanteuse de cabaret se retrouve cachée dans un couvent après avoir été témoin d’un crime, 
+          elle transforme la chorale des sœurs avec énergie et bonne humeur. <br>
+          <strong>Sister Act</strong> est une comédie musicale drôle et touchante portée par une Whoopi Goldberg inoubliable !
+        </p>
+        <div class="flex gap-4 mt-4">
+          <button onclick="louerFilm()" class="bg-white text-black font-semibold px-4 py-2 rounded hover:bg-gray-300 transition" data-film-id="105417">Louer</button>
+          <button class="bg-white/10 border border-white text-white font-semibold px-4 py-2 rounded hover:bg-white/20 transition">Ajouter à ma liste</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Film 5 -->
+  <div class="relative group w-48 h-72 flex-shrink-0">
+    <img src="film/film2.jpeg" alt="Film 2" class="w-full h-full object-cover rounded" />
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded flex flex-col justify-end p-4">
+      <h3 class="text-white text-sm font-bold mb-2">Ninja Turtles</h3>
+      <div class="flex gap-2">
+        <button class="flex items-center gap-2 bg-white text-black text-sm font-semibold px-4 py-1.5 rounded hover:bg-gray-200 transition-all duration-300">
+          <i class="fas fa-play"></i><span>Play</span>
+        </button>
+        <button onclick="openModal('infoModal2')" class="flex items-center gap-2 bg-white/20 text-white text-sm font-semibold px-4 py-1.5 rounded border border-white hover:bg-white/30 transition-all duration-300">
+          <i class="fas fa-info-circle"></i><span>Info</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal Film 5 -->
+  <div id="infoModal2" class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden items-center justify-center film-card" data-annee="1990" data-duree="2h05" data-genre="Thriller">
+    <div class="bg-gray-900 text-white rounded-xl w-[90%] max-w-4xl p-6 relative">
+      <button onclick="closeModal('infoModal2')" class="absolute top-4 right-4 text-white text-2xl hover:text-red-500">&times;</button>
+      <div class="flex flex-col md:flex-row gap-6">
+        <img src="film/film2.jpeg" alt="Film 2" class="w-full md:w-1/3 rounded-lg object-cover" />
+        <div class="flex flex-col gap-4">
+          <h2 class="text-2xl font-bold">Ninja Turtles</h2>
+          <p class="text-sm text-gray-300">1990 • 2h05 • Thriller</p>
+          <p class="text-gray-400 text-sm">Quatre frères mutants experts en arts martiaux sortent de l’ombre pour sauver New York d’un complot menaçant la ville. Entre humour, action et fraternité, Ninja Turtles vous plonge dans une aventure déjantée aux côtés de Leonardo, Michelangelo, Donatello et Raphael !</p>
+          <div class="flex gap-4 mt-4">
+            <button class="bg-white/10 border border-white text-white font-semibold px-4 py-2 rounded hover:bg-white/20 transition" data-film-id="100758">Louer</button>
+            <button class="bg-white/10 border border-white text-white font-semibold px-4 py-2 rounded hover:bg-white/20 transition">Ajouter à ma liste</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Film 6 -->
+    <div class="relative group w-48 h-72 flex-shrink-0">
+      <img src="film/film1.jpeg" alt="Film 1" class="w-full h-full object-cover rounded" />
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded flex flex-col justify-end p-4">
+        <h3 class="text-white text-sm font-bold mb-2">True Lies</h3>
+        <div class="flex gap-2">
+          <button class="flex items-center gap-2 bg-white text-black text-sm font-semibold px-4 py-1.5 rounded hover:bg-gray-200 transition-all duration-300">
+            <i class="fas fa-play"></i><span>Play</span>
+          </button>
+          <button onclick="openModal('infoModal1')" class="flex items-center gap-2 bg-white/20 text-white text-sm font-semibold px-4 py-1.5 rounded border border-white hover:bg-white/30 transition-all duration-300">
+            <i class="fas fa-info-circle"></i><span>Info</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Modal Film 6 -->
+    <div id="infoModal1" class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden items-center justify-center film-card" data-annee="1994" data-duree="1h42" data-genre="Drame">
+      <div class="bg-gray-900 text-white rounded-xl w-[90%] max-w-4xl p-6 relative">
+        <button onclick="closeModal('infoModal1')" class="absolute top-4 right-4 text-white text-2xl hover:text-red-500">&times;</button>
+        <div class="flex flex-col md:flex-row gap-6">
+          <img src="film/film1.jpeg" alt="Film 1" class="w-full md:w-1/3 rounded-lg object-cover" />
+          <div class="flex flex-col gap-4">
+            <h2 class="text-2xl font-bold">True Lies</h2>
+            <p class="text-sm text-gray-300">1994 • 1h42 • Drame</p>
+            <p class="film-description text-gray-400 text-sm">Plongez dans un mélange explosif d’action, d’humour et d’espionnage avec Arnold Schwarzenegger dans le rôle d’un agent secret menant une double vie. Entre missions périlleuses et vie de famille mouvementée, True Lies vous garantit du suspense, des scènes spectaculaires et une bonne dose de divertissement. Un classique incontournable signé James Cameron !</p>
+            <div class="flex gap-4 mt-4">
+              <button class="bg-white/10 border border-white text-white font-semibold px-4 py-2 rounded hover:bg-white/20 transition" data-film-id="111503">Louer</button>
+              <button class="bg-white/10 border border-white text-white font-semibold px-4 py-2 rounded hover:bg-white/20 transition">Ajouter à ma liste</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </section>
+
+  <footer>
+    <style>
+      footer {
+        background-color: #000000;
+        color: #fff;
+        padding: 60px 20px 30px;
+        font-family: Arial, sans-serif;
+      }
+  
+      .footer-container {
+        max-width: 1200px;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        border-bottom: 1px solid #0e0e0e;
+        padding-bottom: 40px;
+      }
+  
+      .footer-logo {
+        flex: 1 1 200px;
+      }
+  
+      .footer-logo img {
+        width: 150px;
+      }
+  
+      .footer-column {
+        flex: 1 1 160px;
+        margin-top: 20px;
+      }
+  
+      .footer-column h4 {
+        font-size: 14px;
+        margin-bottom: 15px;
+        color: #eee;
+      }
+  
+      .footer-column a {
+        display: block;
+        color: #bbb;
+        text-decoration: none;
+        margin-bottom: 8px;
+        font-size: 13px;
+        transition: color 0.3s;
+      }
+  
+      .footer-column a:hover {
+        color: red;
+      }
+  
+      .footer-bottom {
+        text-align: center;
+        margin-top: 30px;
+      }
+  
+      .social-icons {
+        margin: 20px 0;
+      }
+  
+      .social-icons a {
+        display: inline-block;
+        margin: 0 10px;
+        color: #fff;
+        font-size: 18px;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+  
+      .social-icons a:hover {
+        color: red;
+      }
+    </style>
+  
+    <div class="footer-container">
+      <!-- Logo -->
+      <div class="footer-logo">
+        <img src="logo/LOGO_SITE.png" alt="Logo Moon Studio">
+        <p style="margin-top: 10px; font-size: 13px; color: #999;">Louez. Regardez. Vibrez</p>
+      </div>
+  
+      <!-- Colonne 1 -->
+      <div class="footer-column">
+        <h4>Nos services</h4>
+        <a href="#">Films récents</a>
+        <a href="#">Classiques</a>
+        <a href="#">Films en HD</a>
+      </div>
+  
+      <!-- Colonne 2 -->
+      <div class="footer-column">
+        <h4>Aide</h4>
+        <a href="#">FAQ</a>
+        <a href="#">Conditions</a>
+        <a href="#">Support client</a>
+      </div>
+  
+      <!-- Colonne 3 -->
+      <div class="footer-column">
+        <h4>À propos</h4>
+        <a href="#">Notre équipe</a>
+        <a href="#">Contact</a>
+        <a href="#">Partenaires</a>
+      </div>
+    </div>
+  
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    
+  
+    <!-- Copyright -->
+    <div class="footer-bottom">
+      <p>&copy; 2025 Moon Studio. Tous droits réservés.</p>
+    </div>
+  
+    <!-- Police icons (Font Awesome CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  </footer>
+  
+  
+
+  <!-- Script -->
+  <script src="Index.JS"></script>
+
+</body>
+</html>

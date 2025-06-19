@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Films | Moon Studio</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
+  <style>
+    .flip-card {
+      perspective: 1000px;
+    }
+
+    .flip-inner {
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-front, .flip-back {
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .flip-back {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body class="bg-black text-white min-h-screen font-sans px-4 py-10">
+
+  <!-- Logo -->
+  <div class="flex justify-center mb-10">
+    <img src="logo/LOGO_SITE.png" alt="Logo Moon Studio" class="w-36 h-auto" />
+  </div>
+
+  <!-- Title -->
+  <h1 class="text-4xl font-bold text-center mb-10 tracking-wide">Explorer Nos Films</h1>
+
+<!-- Button Back (Retour) -->
+<div class="mt-10 mb-12 text-center">
+  <a href="http://127.0.0.1:5501/Index.HTML#continue-watching" class="inline-block">
+    <button class="bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:bg-gradient-to-l hover:from-red-600 hover:to-red-500">
+      Louer un film
+    </button>
+  </a>
+</div>
+
+
+  <!-- Grid des films -->
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
+
+    <!-- Card -->
+    <div class="flip-card relative w-full h-80">
+      <div class="flip-inner w-full h-full relative rounded-xl overflow-hidden shadow-lg">
+        <!-- Face avant -->
+        <div class="flip-front">
+          <img src="film/film1.jpeg" alt="Inception" class="w-full h-full object-cover" />
+        </div>
+        <!-- Face arrière -->
+        <div class="flip-back bg-black flex flex-col justify-center items-center p-4 text-center rounded-xl">
+          <h3 class="text-xl font-bold mb-4">Inception</h3>
+          <button class="bg-white text-black px-4 py-1 rounded font-semibold hover:bg-gray-300 mb-2">
+            <i class="fas fa-play mr-2"></i>Play
+          </button>
+          <button class="border border-white text-white px-4 py-1 rounded hover:bg-white/20">
+            <i class="fas fa-info-circle mr-2"></i>Info
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Répéter pour chaque film -->
+    <div class="flip-card relative w-full h-80">
+      <div class="flip-inner w-full h-full relative rounded-xl overflow-hidden shadow-lg">
+        <div class="flip-front">
+          <img src="film/film2.jpeg" alt="Titanic" class="w-full h-full object-cover" />
+        </div>
+        <div class="flip-back bg-black flex flex-col justify-center items-center p-4 text-center rounded-xl">
+          <h3 class="text-xl font-bold mb-4">Titanic</h3>
+          <button class="bg-white text-black px-4 py-1 rounded font-semibold hover:bg-gray-300 mb-2">
+            <i class="fas fa-play mr-2"></i>Play
+          </button>
+          <button class="border border-white text-white px-4 py-1 rounded hover:bg-white/20">
+            <i class="fas fa-info-circle mr-2"></i>Info
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card relative w-full h-80">
+      <div class="flip-inner w-full h-full relative rounded-xl overflow-hidden shadow-lg">
+        <div class="flip-front">
+          <img src="film/film3.jpeg" alt="Titanic" class="w-full h-full object-cover" />
+        </div>
+        <div class="flip-back bg-black flex flex-col justify-center items-center p-4 text-center rounded-xl">
+          <h3 class="text-xl font-bold mb-4">Titanic</h3>
+          <button class="bg-white text-black px-4 py-1 rounded font-semibold hover:bg-gray-300 mb-2">
+            <i class="fas fa-play mr-2"></i>Play
+          </button>
+          <button class="border border-white text-white px-4 py-1 rounded hover:bg-white/20">
+            <i class="fas fa-info-circle mr-2"></i>Info
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card relative w-full h-80">
+      <div class="flip-inner w-full h-full relative rounded-xl overflow-hidden shadow-lg">
+        <div class="flip-front">
+          <img src="film/film4.jpeg" alt="Titanic" class="w-full h-full object-cover" />
+        </div>
+        <div class="flip-back bg-black flex flex-col justify-center items-center p-4 text-center rounded-xl">
+          <h3 class="text-xl font-bold mb-4">Titanic</h3>
+          <button class="bg-white text-black px-4 py-1 rounded font-semibold hover:bg-gray-300 mb-2">
+            <i class="fas fa-play mr-2"></i>Play
+          </button>
+          <button class="border border-white text-white px-4 py-1 rounded hover:bg-white/20">
+            <i class="fas fa-info-circle mr-2"></i>Info
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card relative w-full h-80">
+      <div class="flip-inner w-full h-full relative rounded-xl overflow-hidden shadow-lg">
+        <div class="flip-front">
+          <img src="film/film5.jpeg" alt="Titanic" class="w-full h-full object-cover" />
+        </div>
+        <div class="flip-back bg-black flex flex-col justify-center items-center p-4 text-center rounded-xl">
+          <h3 class="text-xl font-bold mb-4">Titanic</h3>
+          <button class="bg-white text-black px-4 py-1 rounded font-semibold hover:bg-gray-300 mb-2">
+            <i class="fas fa-play mr-2"></i>Play
+          </button>
+          <button class="border border-white text-white px-4 py-1 rounded hover:bg-white/20">
+            <i class="fas fa-info-circle mr-2"></i>Info
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card relative w-full h-80">
+      <div class="flip-inner w-full h-full relative rounded-xl overflow-hidden shadow-lg">
+        <div class="flip-front">
+          <img src="film/film6.jpeg" alt="Titanic" class="w-full h-full object-cover" />
+        </div>
+        <div class="flip-back bg-black flex flex-col justify-center items-center p-4 text-center rounded-xl">
+          <h3 class="text-xl font-bold mb-4">Titanic</h3>
+          <button class="bg-white text-black px-4 py-1 rounded font-semibold hover:bg-gray-300 mb-2">
+            <i class="fas fa-play mr-2"></i>Play
+          </button>
+          <button class="border border-white text-white px-4 py-1 rounded hover:bg-white/20">
+            <i class="fas fa-info-circle mr-2"></i>Info
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card relative w-full h-80">
+      <div class="flip-inner w-full h-full relative rounded-xl overflow-hidden shadow-lg">
+        <div class="flip-front">
+          <img src="film/film7.jpeg" alt="Titanic" class="w-full h-full object-cover" />
+        </div>
+        <div class="flip-back bg-black flex flex-col justify-center items-center p-4 text-center rounded-xl">
+          <h3 class="text-xl font-bold mb-4">Titanic</h3>
+          <button class="bg-white text-black px-4 py-1 rounded font-semibold hover:bg-gray-300 mb-2">
+            <i class="fas fa-play mr-2"></i>Play
+          </button>
+          <button class="border border-white text-white px-4 py-1 rounded hover:bg-white/20">
+            <i class="fas fa-info-circle mr-2"></i>Info
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card relative w-full h-80">
+      <div class="flip-inner w-full h-full relative rounded-xl overflow-hidden shadow-lg">
+        <div class="flip-front">
+          <img src="film/film8.jpeg" alt="Titanic" class="w-full h-full object-cover" />
+        </div>
+        <div class="flip-back bg-black flex flex-col justify-center items-center p-4 text-center rounded-xl">
+          <h3 class="text-xl font-bold mb-4">Titanic</h3>
+          <button class="bg-white text-black px-4 py-1 rounded font-semibold hover:bg-gray-300 mb-2">
+            <i class="fas fa-play mr-2"></i>Play
+          </button>
+          <button class="border border-white text-white px-4 py-1 rounded hover:bg-white/20">
+            <i class="fas fa-info-circle mr-2"></i>Info
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card relative w-full h-80">
+      <div class="flip-inner w-full h-full relative rounded-xl overflow-hidden shadow-lg">
+        <div class="flip-front">
+          <img src="film/film9.jpeg" alt="Titanic" class="w-full h-full object-cover" />
+        </div>
+        <div class="flip-back bg-black flex flex-col justify-center items-center p-4 text-center rounded-xl">
+          <h3 class="text-xl font-bold mb-4">Titanic</h3>
+          <button class="bg-white text-black px-4 py-1 rounded font-semibold hover:bg-gray-300 mb-2">
+            <i class="fas fa-play mr-2"></i>Play
+          </button>
+          <button class="border border-white text-white px-4 py-1 rounded hover:bg-white/20">
+            <i class="fas fa-info-circle mr-2"></i>Info
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card relative w-full h-80">
+      <div class="flip-inner w-full h-full relative rounded-xl overflow-hidden shadow-lg">
+        <div class="flip-front">
+          <img src="film/film2.jpeg" alt="Titanic" class="w-full h-full object-cover" />
+        </div>
+        <div class="flip-back bg-black flex flex-col justify-center items-center p-4 text-center rounded-xl">
+          <h3 class="text-xl font-bold mb-4">Titanic</h3>
+          <button class="bg-white text-black px-4 py-1 rounded font-semibold hover:bg-gray-300 mb-2">
+            <i class="fas fa-play mr-2"></i>Play
+          </button>
+          <button class="border border-white text-white px-4 py-1 rounded hover:bg-white/20">
+            <i class="fas fa-info-circle mr-2"></i>Info
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card relative w-full h-80">
+      <div class="flip-inner w-full h-full relative rounded-xl overflow-hidden shadow-lg">
+        <div class="flip-front">
+          <img src="film/film1.jpeg" alt="Titanic" class="w-full h-full object-cover" />
+        </div>
+        <div class="flip-back bg-black flex flex-col justify-center items-center p-4 text-center rounded-xl">
+          <h3 class="text-xl font-bold mb-4">Titanic</h3>
+          <button class="bg-white text-black px-4 py-1 rounded font-semibold hover:bg-gray-300 mb-2">
+            <i class="fas fa-play mr-2"></i>Play
+          </button>
+          <button class="border border-white text-white px-4 py-1 rounded hover:bg-white/20">
+            <i class="fas fa-info-circle mr-2"></i>Info
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card relative w-full h-80">
+      <div class="flip-inner w-full h-full relative rounded-xl overflow-hidden shadow-lg">
+        <div class="flip-front">
+          <img src="film/film3.jpeg" alt="Titanic" class="w-full h-full object-cover" />
+        </div>
+        <div class="flip-back bg-black flex flex-col justify-center items-center p-4 text-center rounded-xl">
+          <h3 class="text-xl font-bold mb-4">Titanic</h3>
+          <button class="bg-white text-black px-4 py-1 rounded font-semibold hover:bg-gray-300 mb-2">
+            <i class="fas fa-play mr-2"></i>Play
+          </button>
+          <button class="border border-white text-white px-4 py-1 rounded hover:bg-white/20">
+            <i class="fas fa-info-circle mr-2"></i>Info
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</body>
+
+<footer>
+  <style>
+    footer {
+      background-color: #000000;
+      color: #fff;
+      padding: 60px 20px 30px;
+      font-family: Arial, sans-serif;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      border-bottom: 1px solid #0e0e0e;
+      padding-bottom: 40px;
+    }
+
+    .footer-logo {
+      flex: 1 1 200px;
+    }
+
+    .footer-logo img {
+      width: 150px;
+    }
+
+    .footer-column {
+      flex: 1 1 160px;
+      margin-top: 20px;
+    }
+
+    .footer-column h4 {
+      font-size: 14px;
+      margin-bottom: 15px;
+      color: #eee;
+    }
+
+    .footer-column a {
+      display: block;
+      color: #bbb;
+      text-decoration: none;
+      margin-bottom: 8px;
+      font-size: 13px;
+      transition: color 0.3s;
+    }
+
+    .footer-column a:hover {
+      color: red;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .social-icons {
+      margin: 20px 0;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      margin: 0 10px;
+      color: #fff;
+      font-size: 18px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: red;
+    }
+  </style>
+
+  <div class="footer-container">
+    <!-- Logo -->
+    <div class="footer-logo">
+      <img src="logo/LOGO_SITE.png" alt="Logo Moon Studio">
+      <p style="margin-top: 10px; font-size: 13px; color: #999;">Louez. Regardez. Vibrez</p>
+    </div>
+
+    <!-- Colonne 1 -->
+    <div class="footer-column">
+      <h4>Nos services</h4>
+      <a href="#">Films récents</a>
+      <a href="#">Classiques</a>
+      <a href="#">Films en HD</a>
+    </div>
+
+    <!-- Colonne 2 -->
+    <div class="footer-column">
+      <h4>Aide</h4>
+      <a href="#">FAQ</a>
+      <a href="#">Conditions</a>
+      <a href="#">Support client</a>
+    </div>
+
+    <!-- Colonne 3 -->
+    <div class="footer-column">
+      <h4>À propos</h4>
+      <a href="#">Notre équipe</a>
+      <a href="#">Contact</a>
+      <a href="#">Partenaires</a>
+    </div>
+  </div>
+
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-youtube"></i></a>
+  </div>
+  
+
+  <!-- Copyright -->
+  <div class="footer-bottom">
+    <p>&copy; 2025 Moon Studio. Tous droits réservés.</p>
+  </div>
+
+  <!-- Police icons (Font Awesome CDN) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</footer>
+
+</html>

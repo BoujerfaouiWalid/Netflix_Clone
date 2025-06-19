@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Erreur de connexion</title>
+  <style>
+    body {
+      background-color: #f8d7da;
+      color: #721c24;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: #f5c6cb;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #c82333;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #a71d2a;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Oops !</h1>
+    <p>Nous sommes désolés, votre email ou mot de passe est incorrect.</p>
+    <button onclick="retourInscription()">Réessayer</button>
+  </div>
+
+
+  <script>
+    function retourInscription() {
+      window.location.href = "http://127.0.0.1:5500/Index.HTML#register";
+    }
+  </script>
+  
+</body>
+</html>
